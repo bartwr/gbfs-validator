@@ -1,4 +1,5 @@
 import fs from 'fs';
+import path from 'path';
 
 export const getAllDirFiles = function(dirPath, arrayOfFiles) {
   const files = fs.readdirSync(dirPath)
@@ -14,4 +15,10 @@ export const getAllDirFiles = function(dirPath, arrayOfFiles) {
   })
 
   return arrayOfFiles
+}
+
+export const store_data_file = async (filePath, text) => {
+  const root = path.resolve()
+  const absolutePath = `${root}/data/${filePath}`;
+  await fs.writeFileSync(absolutePath, text);
 }
